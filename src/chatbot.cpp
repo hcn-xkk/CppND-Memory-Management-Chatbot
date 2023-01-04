@@ -100,13 +100,16 @@ ChatBot &ChatBot::operator=(ChatBot &&other) {
 }
 
 ChatBot::~ChatBot() {
-  std::cout << "ChatBot Destructor" << std::endl;
+  std::cout << "ChatBot Destructor " << this;
 
   // deallocate heap memory
   if (_image != NULL) // Attention: wxWidgets used NULL and not nullptr
   {
     delete _image;
     _image = NULL;
+    std::cout << "with allocation" << std::endl;
+  } else {
+    std::cout << std::endl;
   }
 }
 
@@ -158,6 +161,7 @@ void ChatBot::SetCurrentNode(GraphNode *node) {
   std::uniform_int_distribution<int> dis(0, answers.size() - 1);
   std::string answer = answers.at(dis(generator));
 
+  _chatLogic->SetChatbotHandle(this); // update chatBot for chatLogic
   // send selected node answer to user
   _chatLogic->SendMessageToUser(answer);
 }
