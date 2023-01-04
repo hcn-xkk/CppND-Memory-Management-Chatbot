@@ -11,42 +11,9 @@
 #include "graphedge.h"
 #include "graphnode.h"
 
-ChatLogic::ChatLogic() {
-  //// STUDENT CODE
-  ////
+ChatLogic::ChatLogic() {} // this definition cannot be moved to header. Why?
 
-  // create instance of chatbot
-  // _chatBot = new ChatBot("../images/chatbot.png");
-  // _chatBot = nullptr;
-
-  // add pointer to chatlogic so that chatbot answers can be passed on to the
-  // GUI
-  // _chatBot->SetChatLogicHandle(this);
-
-  ////
-  //// EOF STUDENT CODE
-}
-
-ChatLogic::~ChatLogic() {
-  //// STUDENT CODE
-  ////
-
-  // delete chatbot instance
-  // delete _chatBot;
-
-  // delete all nodes
-  // for (auto it = std::begin(_nodes); it != std::end(_nodes); ++it) {
-  //   delete *it;
-  // }
-
-  // delete all edges
-  // for (auto it = std::begin(_edges); it != std::end(_edges); ++it) {
-  //   delete *it;
-  // }
-
-  ////
-  //// EOF STUDENT CODE
-}
+ChatLogic::~ChatLogic() {} // this definition cannot be moved to header. Why?
 
 template <typename T>
 void ChatLogic::AddAllTokensToElement(std::string tokenID, tokenlist &tokens,
@@ -123,8 +90,6 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename) {
 
           // node-based processing
           if (type->second == "NODE") {
-            //// STUDENT CODE
-            ////
 
             // check if node with this ID exists already
             auto newNode =
@@ -142,15 +107,10 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename) {
               // add all answers to current node
               AddAllTokensToElement("ANSWER", tokens, **newNode);
             }
-
-            ////
-            //// EOF STUDENT CODE
           }
 
           // edge-based processing
           if (type->second == "EDGE") {
-            //// STUDENT CODE
-            ////
 
             // find tokens for incoming (parent) and outgoing (child) node
             auto parentToken = std::find_if(
@@ -193,9 +153,6 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename) {
               // unique pointer
               (*parentNode)->AddEdgeToChildNode(std::move(edge));
             }
-
-            ////
-            //// EOF STUDENT CODE
           }
         } else {
           std::cout << "Error: ID missing. Line is ignored!" << std::endl;
@@ -211,8 +168,6 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename) {
     return;
   }
 
-  //// STUDENT CODE
-  ////
   ChatBot chatbot("../images/chatbot.png");
   chatbot.SetChatLogicHandle(this);
 
@@ -235,9 +190,6 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename) {
 
   _chatBot = &chatbot;
   rootNode->MoveChatbotHere(std::move(chatbot));
-
-  ////
-  //// EOF STUDENT CODE
 }
 
 void ChatLogic::SetPanelDialogHandle(ChatBotPanelDialog *panelDialog) {
