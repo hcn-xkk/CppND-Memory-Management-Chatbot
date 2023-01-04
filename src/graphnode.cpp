@@ -20,7 +20,7 @@ void GraphNode::AddEdgeToParentNode(GraphEdge *edge) {
 }
 
 void GraphNode::AddEdgeToChildNode(std::unique_ptr<GraphEdge> edge) {
-  // TODO: need std::move in function and in argument?
+  // TODO: what does the std::move do?
   _childEdges.push_back(std::move(edge));
 }
 
